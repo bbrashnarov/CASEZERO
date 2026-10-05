@@ -174,9 +174,16 @@ func test_budget_fifo_and_export() -> void:
 func test_analytics_failure_never_blocks_gameplay() -> void:
 	var fx := Fx.new()
 	h = UiHarness.new(Vector2(360, 640), 1.0, [0, 0, 0, 0], fx.backend)
-	h.analytics_dir = "res://nonexistent_readonly/\u0000bad"
+	# The analytics "directory" is an existing regular file: every append fails.
+	var blocker := "user://analytics_blocker_%d" % Time.get_ticks_usec()
+	var f := FileAccess.open(blocker, FileAccess.WRITE)
+	f.store_string("x")
+	f.close()
+	h.analytics_dir = blocker
 	await h.boot()
 	await h.press("UI_BOARD_C01", h.base())
 	await h.press("UI_PRIMARY", h.base())
 	await h.tap_object("C01", "C01_WINDOW")
 	assert_eq(h.run("C01")["evidence"], ["EV_C01_RAIN"], "save path independent of analytics")
+	assert_true(h.ctx().analytics.write_failures > 0, "analytics writes really failed")
+	DirAccess.remove_absolute(blocker)
