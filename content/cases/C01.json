@@ -1,0 +1,431 @@
+{
+ "case_id": "C01",
+ "order": 1,
+ "title": "Отвореният прозорец",
+ "title_en": "The Open Window",
+ "objective": "Провери историята за прозореца.",
+ "opening_text": "Гост е намерен безжизнен в стая 204. Управителят: „Прилошало му е до отворения прозорец. Беше отворен цяла вечер.“",
+ "scene_id": "SCN_C01_ROOM",
+ "thumbnail_asset": "A_CASE_C01_THUMB",
+ "ambience": "AMB_C01",
+ "unlock": true,
+ "next_case": "C02",
+ "intro_pulse": {
+  "object_id": "C01_WINDOW",
+  "duration_ms": 5000
+ },
+ "background": {
+  "object_id": "C01_BACKGROUND",
+  "asset_id": "A_C01_BG",
+  "rect": [
+   0,
+   264,
+   1080,
+   1332
+  ],
+  "z": 0
+ },
+ "run_fields": {},
+ "invariants": [],
+ "objects": [
+  {
+   "id": "C01_WINDOW",
+   "name": "Отворен прозорец",
+   "asset_id": "A_C01_WINDOW",
+   "detail_asset_id": "A_C01_WINDOW_DETAIL",
+   "rect": [
+    648,
+    336,
+    336,
+    480
+   ],
+   "hitbox": [
+    624,
+    312,
+    384,
+    528
+   ],
+   "layer": "Scene_Interactive",
+   "z": 10,
+   "priority": 100,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "OPEN",
+   "gate": true,
+   "inspect_screen": "C01_INSPECT_WINDOW",
+   "detail_text": "Дъжд от 19:00. Към огледа в 22:12 капките влизат навътре и мокрят вътрешния перваз. Няма козирка.",
+   "evidence": [
+    "EV_C01_RAIN"
+   ],
+   "required": true
+  },
+  {
+   "id": "C01_FLOOR",
+   "name": "Под под прозореца",
+   "asset_id": "A_C01_FLOOR",
+   "detail_asset_id": "A_C01_FLOOR_DETAIL",
+   "rect": [
+    624,
+    936,
+    360,
+    216
+   ],
+   "hitbox": [
+    600,
+    912,
+    408,
+    264
+   ],
+   "layer": "Scene_Interactive",
+   "z": 11,
+   "priority": 101,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C01_INSPECT_FLOOR",
+   "detail_text": "Подът непосредствено под прозореца е сух. Не се виждат следи от избърсване. Това поражда въпрос, но само по себе си не доказва кога е отворен.",
+   "evidence": [
+    "EV_C01_DRY_FLOOR"
+   ],
+   "required": true
+  },
+  {
+   "id": "C01_SHOES",
+   "name": "Обувки",
+   "asset_id": "A_C01_SHOES",
+   "detail_asset_id": "A_C01_SHOES_DETAIL",
+   "rect": [
+    408,
+    1224,
+    168,
+    168
+   ],
+   "hitbox": [
+    384,
+    1200,
+    216,
+    216
+   ],
+   "layer": "Scene_Interactive",
+   "z": 12,
+   "priority": 102,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C01_INSPECT_SHOES",
+   "detail_text": "Суха подметка. Само това не показва кога гостът се е прибрал.",
+   "evidence": [],
+   "required": false
+  },
+  {
+   "id": "C01_CUP",
+   "name": "Чаша с тъмен ръб",
+   "asset_id": "A_C01_CUP",
+   "detail_asset_id": "A_C01_CUP_DETAIL",
+   "rect": [
+    144,
+    768,
+    168,
+    192
+   ],
+   "hitbox": [
+    120,
+    744,
+    216,
+    240
+   ],
+   "layer": "Scene_Interactive",
+   "z": 13,
+   "priority": 103,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C01_INSPECT_CUP",
+   "detail_text": "Тъмният ръб е следа от кафе. Няма видими данни за отрова; вкусът и външният вид не могат да я изключат.",
+   "evidence": [],
+   "required": false
+  },
+  {
+   "id": "C01_CLOCK",
+   "name": "Стенен часовник",
+   "asset_id": "A_C01_CLOCK",
+   "detail_asset_id": "A_C01_CLOCK_DETAIL",
+   "rect": [
+    144,
+    360,
+    192,
+    168
+   ],
+   "hitbox": [
+    120,
+    336,
+    240,
+    216
+   ],
+   "layer": "Scene_Interactive",
+   "z": 14,
+   "priority": 104,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C01_INSPECT_CLOCK",
+   "detail_text": "Показва 22:12 — часа на огледа. Не е доказателство за часа на инцидента.",
+   "evidence": [],
+   "required": false
+  },
+  {
+   "id": "C01_MANAGER",
+   "name": "Карта: допълни показанията",
+   "asset_id": "A_C01_MANAGER",
+   "detail_asset_id": "A_C01_MANAGER_DETAIL",
+   "rect": [
+    696,
+    1272,
+    264,
+    192
+   ],
+   "hitbox": [
+    672,
+    1248,
+    312,
+    240
+   ],
+   "layer": "Scene_Interactive",
+   "z": 15,
+   "priority": 105,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_MANAGER",
+   "physical_state": "READY",
+   "gate": {
+    "q": "C01_Q1"
+   },
+   "locked_text": "Първо сравни прозореца и пода.",
+   "inspect_screen": "C01_INSPECT_MANAGER",
+   "detail_text": "„Отворих го в 22:11, след като намерих госта. Исках да проветря. Казах, че е бил отворен, защото се уплаших да призная, че съм пипал нещо.“",
+   "evidence": [
+    "EV_C01_ADMISSION"
+   ],
+   "required": true
+  },
+  {
+   "id": "C01_BODY",
+   "name": "Покрито тяло",
+   "asset_id": "A_C01_BODY",
+   "detail_asset_id": null,
+   "rect": [
+    96,
+    1056,
+    264,
+    456
+   ],
+   "hitbox": null,
+   "layer": "Scene_Decor",
+   "z": 16,
+   "priority": null,
+   "clickable": false,
+   "input": "NONE",
+   "profile": "NONE",
+   "physical_state": "STATIC",
+   "gate": null,
+   "inspect_screen": null,
+   "detail_text": "Покрит силует; не показва травми и не е интерактивен.",
+   "evidence": [],
+   "required": false
+  }
+ ],
+ "evidence": [
+  {
+   "id": "EV_C01_RAIN",
+   "name": "Дъжд и отворен прозорец",
+   "source_object": "C01_WINDOW",
+   "icon": "I_EV_C01_RAIN",
+   "required": true,
+   "card_text": "Дъжд от 19:00; към 22:12 капките влизат навътре."
+  },
+  {
+   "id": "EV_C01_DRY_FLOOR",
+   "name": "Сух под",
+   "source_object": "C01_FLOOR",
+   "icon": "I_EV_C01_DRY_FLOOR",
+   "required": true,
+   "card_text": "Подът под прозореца е сух; моментът на отваряне още не е доказан."
+  },
+  {
+   "id": "EV_C01_ADMISSION",
+   "name": "Допълнени показания",
+   "source_object": "C01_MANAGER",
+   "icon": "I_EV_C01_ADMISSION",
+   "required": true,
+   "card_text": "Управителят: отворих в 22:11, след като намерих госта, за да проветря."
+  }
+ ],
+ "stages": [
+  {
+   "id": "C01_Q1",
+   "screen": "C01_DEDUCTION_Q1",
+   "type": "single_answer",
+   "question": "Какво най-разумно следва от видяното?",
+   "unlock": {
+    "has_all": [
+     "EV_C01_RAIN",
+     "EV_C01_DRY_FLOOR"
+    ]
+   },
+   "required_evidence": [
+    "EV_C01_RAIN",
+    "EV_C01_DRY_FLOOR"
+   ],
+   "answers": [
+    {
+     "id": "C01_Q1_A0",
+     "text": "Прозорецът вероятно е отворен наскоро; провери показанията."
+    },
+    {
+     "id": "C01_Q1_A1",
+     "text": "Сухият под доказва, че управителят е убиец."
+    },
+    {
+     "id": "C01_Q1_A2",
+     "text": "Прозорецът със сигурност е бил отворен цяла вечер."
+    }
+   ],
+   "correct": "C01_Q1_A0",
+   "correct_feedback": "Версията е съмнителна. Сега попитай кой е отворил прозореца.",
+   "incorrect_feedback": "Наблюдението подсказва промяна, но не доказва извършител или точен момент.",
+   "result": {
+    "question": "C01_Q1"
+   },
+   "final": false,
+   "success_cta": {
+    "label": "Към показанията",
+    "route": "SCENE"
+   }
+  },
+  {
+   "id": "C01_Q2",
+   "screen": "C01_DEDUCTION_Q2",
+   "type": "single_answer",
+   "question": "Какво установяват допълнените показания?",
+   "unlock": {
+    "all": [
+     {
+      "has_all": [
+       "EV_C01_RAIN",
+       "EV_C01_DRY_FLOOR",
+       "EV_C01_ADMISSION"
+      ]
+     },
+     {
+      "q": "C01_Q1"
+     }
+    ]
+   },
+   "required_evidence": [
+    "EV_C01_RAIN",
+    "EV_C01_DRY_FLOOR",
+    "EV_C01_ADMISSION"
+   ],
+   "answers": [
+    {
+     "id": "C01_Q2_A0",
+     "text": "Гостът е паднал през прозореца."
+    },
+    {
+     "id": "C01_Q2_A1",
+     "text": "Управителят го е отворил след намирането на госта, за да проветри."
+    },
+    {
+     "id": "C01_Q2_A2",
+     "text": "Управителят е доказано виновен за смъртта."
+    }
+   ],
+   "correct": "C01_Q2_A1",
+   "correct_feedback": "Прозорецът е отворен след намирането на госта. Причината за смъртта остава отделен въпрос.",
+   "incorrect_feedback": "Признанието установява намеса в сцената, не причина за смъртта.",
+   "result": {
+    "question": "C01_Q2"
+   },
+   "final": true,
+   "waiting_cta": {
+    "when": {
+     "q": "C01_Q1"
+    },
+    "label": "Провери показанията",
+    "route": "SCENE"
+   }
+  }
+ ],
+ "success": {
+  "all": [
+   {
+    "has_all": [
+     "EV_C01_RAIN",
+     "EV_C01_DRY_FLOOR",
+     "EV_C01_ADMISSION"
+    ]
+   },
+   {
+    "q": "C01_Q1"
+   },
+   {
+    "q": "C01_Q2"
+   }
+  ]
+ },
+ "hints": {
+  "texts": [
+   {
+    "id": "C01_H1",
+    "text": "Виж зоната между прозореца и пода."
+   },
+   {
+    "id": "C01_H2",
+    "text": "Какво очакваш да има на пода, ако дъждът е влизал цяла вечер?"
+   },
+   {
+    "id": "C01_H3",
+    "text": "Докосни прозореца и сухия под. След първия извод провери картата на управителя."
+   }
+  ],
+  "targets": [
+   {
+    "object_id": "C01_WINDOW",
+    "satisfied": {
+     "has_all": [
+      "EV_C01_RAIN"
+     ]
+    }
+   },
+   {
+    "object_id": "C01_FLOOR",
+    "satisfied": {
+     "has_all": [
+      "EV_C01_DRY_FLOOR"
+     ]
+    }
+   },
+   {
+    "object_id": "C01_MANAGER",
+    "satisfied": {
+     "has_all": [
+      "EV_C01_ADMISSION"
+     ]
+    },
+    "available": {
+     "q": "C01_Q1"
+    }
+   }
+  ]
+ },
+ "solved_text": "Сухият под постави версията под съмнение. Управителят призна: отворил е прозореца след намирането на госта, за да проветри. Установи промяната в сцената — не извършител на убийство."
+}

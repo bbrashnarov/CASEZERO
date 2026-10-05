@@ -1,0 +1,15 @@
+# Godot
+.godot/
+export_credentials.cfg
+# Build outputs
+build/
+*.apk
+*.aab
+*.idsig
+# Keystores never go to git
+*.keystore
+*.jks
+# Python
+__pycache__/
+# QA builds are committed on purpose so testers can install them without a build machine
+!qa/apk/*.apk

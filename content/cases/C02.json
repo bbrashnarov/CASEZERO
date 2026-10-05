@@ -1,0 +1,467 @@
+{
+ "case_id": "C02",
+ "order": 2,
+ "title": "Последното обаждане",
+ "title_en": "The Last Call",
+ "objective": "Провери заявеното обаждане A → B.",
+ "opening_text": "Мира: „На ден D в 23:30 проведох двеминутен обикновен телефонен разговор от моя номер A към неговия номер B. Не беше през приложение.“",
+ "scene_id": "SCN_C02_DESK",
+ "thumbnail_asset": "A_CASE_C02_THUMB",
+ "ambience": "AMB_C02",
+ "unlock": {
+  "campaign_completed": "C01"
+ },
+ "next_case": "C03",
+ "background": {
+  "object_id": "C02_BACKGROUND",
+  "asset_id": "A_C02_BG",
+  "rect": [
+   0,
+   264,
+   1080,
+   1332
+  ],
+  "z": 0
+ },
+ "run_fields": {
+  "phone_power": {
+   "type": "enum",
+   "values": [
+    "EMPTY",
+    "RESTORED"
+   ],
+   "initial": "EMPTY"
+  },
+  "charger": {
+   "type": "enum",
+   "values": [
+    "DISCONNECTED",
+    "CONNECTED"
+   ],
+   "initial": "DISCONNECTED"
+  },
+  "link_ok": {
+   "type": "bool",
+   "initial": false
+  }
+ },
+ "invariants": [
+  {
+   "any": [
+    {
+     "all": [
+      {
+       "field": "charger",
+       "eq": "CONNECTED"
+      },
+      {
+       "field": "phone_power",
+       "eq": "RESTORED"
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "field": "charger",
+       "eq": "DISCONNECTED"
+      },
+      {
+       "field": "phone_power",
+       "eq": "EMPTY"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "any": [
+    {
+     "not": {
+      "has_all": [
+       "EV_C02_IDENTITY"
+      ]
+     }
+    },
+    {
+     "field": "phone_power",
+     "eq": "RESTORED"
+    }
+   ]
+  }
+ ],
+ "objects": [
+  {
+   "id": "C02_PHONE",
+   "name": "Телефон на госта",
+   "asset_id": "A_C02_PHONE",
+   "detail_asset_id": "A_C02_PHONE_DETAIL",
+   "rect": [
+    168,
+    672,
+    240,
+    384
+   ],
+   "hitbox": [
+    144,
+    648,
+    288,
+    432
+   ],
+   "layer": "Scene_Interactive",
+   "z": 10,
+   "priority": 100,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_PHONE",
+   "physical_state": "EMPTY_OR_RESTORED",
+   "gate": true,
+   "inspect_screen": "C02_INSPECT_PHONE",
+   "variant_field": "phone_power",
+   "variants": {
+    "EMPTY": {
+     "detail_text": "При намиране: 0%. Не знаем кога е изгаснал.",
+     "evidence": [
+      "EV_C02_BATTERY"
+     ]
+    },
+    "RESTORED": {
+     "detail_text": "Собственик: Иво; номер B. Последен запис A → B: ден D, 22:48, пропуснат, 0 s.",
+     "evidence": [
+      "EV_C02_BATTERY",
+      "EV_C02_IDENTITY"
+     ]
+    }
+   },
+   "required": true
+  },
+  {
+   "id": "C02_CHARGER",
+   "name": "Зарядно и кабел",
+   "asset_id": "A_C02_CHARGER",
+   "detail_asset_id": "A_C02_CHARGER_DETAIL",
+   "rect": [
+    168,
+    1248,
+    240,
+    192
+   ],
+   "hitbox": [
+    144,
+    1224,
+    288,
+    240
+   ],
+   "layer": "Scene_Interactive",
+   "z": 11,
+   "priority": 101,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_CHARGER",
+   "physical_state": "DISCONNECTED_OR_CONNECTED",
+   "gate": true,
+   "inspect_screen": "C02_INSPECT_CHARGER",
+   "detail_text": "Зарядното работи. Натисни „Свържи“, за да възстановиш телефона. Наличието му не доказва дали телефонът е бил зареден в 23:30.",
+   "evidence": [],
+   "variant_field": "charger",
+   "cta": {
+    "action": "CONNECT_CHARGER",
+    "label": "Свържи",
+    "done_label": "Свързан",
+    "enabled_when": {
+     "field": "charger",
+     "eq": "DISCONNECTED"
+    },
+    "effects": {
+     "charger": "CONNECTED",
+     "phone_power": "RESTORED"
+    },
+    "event": "CHARGER_CONNECTED",
+    "event_prior_fields": {
+     "phone_power": "prior_power"
+    },
+    "sound": "SFX_CONNECT"
+   },
+   "required": true
+  },
+  {
+   "id": "C02_RECORD",
+   "name": "Проверена операторска справка",
+   "asset_id": "A_C02_RECORD",
+   "detail_asset_id": "A_C02_RECORD_DETAIL",
+   "rect": [
+    624,
+    456,
+    336,
+    336
+   ],
+   "hitbox": [
+    600,
+    432,
+    384,
+    384
+   ],
+   "layer": "Scene_Interactive",
+   "z": 12,
+   "priority": 102,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C02_INSPECT_RECORD",
+   "detail_text": "Пълна справка за номера A и B, ден D, 23:20–23:40. Свързани гласови обаждания A → B: 0; B → A: 0. Интервалът е местно време. Източникът е проверен от разследването.",
+   "evidence": [
+    "EV_C02_NETWORK"
+   ],
+   "required": true
+  },
+  {
+   "id": "C02_WATCH",
+   "name": "Часовникът, посочен от Мира",
+   "asset_id": "A_C02_WATCH",
+   "detail_asset_id": "A_C02_WATCH_DETAIL",
+   "rect": [
+    672,
+    1008,
+    216,
+    216
+   ],
+   "hitbox": [
+    648,
+    984,
+    264,
+    264
+   ],
+   "layer": "Scene_Interactive",
+   "z": 13,
+   "priority": 103,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C02_INSPECT_WATCH",
+   "detail_text": "Синхронизиран запис: A → B, ден D, 22:48, „няма отговор“, продължителност 0 s. Мира посочи точно този запис като опора за спомена си.",
+   "evidence": [
+    "EV_C02_WATCH_LOG"
+   ],
+   "required": true
+  },
+  {
+   "id": "C02_CLOCK",
+   "name": "Настолен часовник",
+   "asset_id": "A_C02_CLOCK",
+   "detail_asset_id": "A_C02_CLOCK_DETAIL",
+   "rect": [
+    168,
+    384,
+    192,
+    144
+   ],
+   "hitbox": [
+    144,
+    360,
+    240,
+    192
+   ],
+   "layer": "Scene_Interactive",
+   "z": 14,
+   "priority": 104,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C02_INSPECT_CLOCK",
+   "detail_text": "00:10 на ден D+1: часът на огледа. Не показва кога батерията е паднала на 0%.",
+   "evidence": [],
+   "required": false
+  }
+ ],
+ "evidence": [
+  {
+   "id": "EV_C02_BATTERY",
+   "name": "Батерия при намиране",
+   "source_object": "C02_PHONE",
+   "icon": "I_EV_C02_BATTERY",
+   "required": false,
+   "card_text": "0% при огледа. Няма информация за процента в 23:30."
+  },
+  {
+   "id": "EV_C02_IDENTITY",
+   "name": "Телефон и номер B",
+   "source_object": "C02_PHONE",
+   "icon": "I_EV_C02_IDENTITY",
+   "required": true,
+   "card_text": "Телефонът е на Иво, номер B; местният запис 22:48 е пропуснато обаждане."
+  },
+  {
+   "id": "EV_C02_NETWORK",
+   "name": "Пълна операторска справка",
+   "source_object": "C02_RECORD",
+   "icon": "I_EV_C02_NETWORK",
+   "required": true,
+   "card_text": "Ден D, 23:20–23:40: няма свързано A ↔ B клетъчно гласово обаждане."
+  },
+  {
+   "id": "EV_C02_WATCH_LOG",
+   "name": "Час и статус на посочения запис",
+   "source_object": "C02_WATCH",
+   "icon": "I_EV_C02_WATCH_LOG",
+   "required": true,
+   "card_text": "Ден D, 22:48, няма отговор, 0 s. Това не е разговор в 23:30."
+  }
+ ],
+ "stages": [
+  {
+   "id": "C02_CONNECT",
+   "screen": "C02_CONNECT",
+   "type": "evidence_set",
+   "question": "Кои три източника проверяват заявеното обаждане?",
+   "unlock": {
+    "has_all": [
+     "EV_C02_IDENTITY",
+     "EV_C02_NETWORK",
+     "EV_C02_WATCH_LOG"
+    ]
+   },
+   "required_evidence": [
+    "EV_C02_IDENTITY",
+    "EV_C02_NETWORK",
+    "EV_C02_WATCH_LOG"
+   ],
+   "select_count": 3,
+   "correct_set": [
+    "EV_C02_IDENTITY",
+    "EV_C02_NETWORK",
+    "EV_C02_WATCH_LOG"
+   ],
+   "submit_label": "Свържи",
+   "incorrect_feedback": "Батерията при огледа не определя какво е станало в 23:30.",
+   "result": {
+    "field": "link_ok"
+   },
+   "final": false
+  },
+  {
+   "id": "C02_Q1",
+   "screen": "C02_DEDUCTION_Q1",
+   "type": "single_answer",
+   "question": "Какво доказват проверените записи?",
+   "unlock": {
+    "all": [
+     {
+      "has_all": [
+       "EV_C02_IDENTITY",
+       "EV_C02_NETWORK",
+       "EV_C02_WATCH_LOG"
+      ]
+     },
+     {
+      "field": "link_ok",
+      "eq": true
+     }
+    ]
+   },
+   "required_evidence": [
+    "EV_C02_IDENTITY",
+    "EV_C02_NETWORK",
+    "EV_C02_WATCH_LOG"
+   ],
+   "answers": [
+    {
+     "id": "C02_Q1_A0",
+     "text": "0% при огледа доказва, че в 23:30 телефонът е бил изключен."
+    },
+    {
+     "id": "C02_Q1_A1",
+     "text": "Възможно е да са говорили, защото има запис 22:48."
+    },
+    {
+     "id": "C02_Q1_A2",
+     "text": "Заявеният клетъчен разговор A → B в 23:30 не се е състоял."
+    }
+   ],
+   "correct": "C02_Q1_A2",
+   "correct_feedback": "Справката изключва заявеното обаждане. Посоченият запис е от друг час и не е разговор.",
+   "incorrect_feedback": "Сравни вид обаждане, номера, интервал и статус. Батерията при огледа не доказва миналото.",
+   "result": {
+    "question": "C02_Q1"
+   },
+   "final": true
+  }
+ ],
+ "success": {
+  "all": [
+   {
+    "has_all": [
+     "EV_C02_IDENTITY",
+     "EV_C02_NETWORK",
+     "EV_C02_WATCH_LOG"
+    ]
+   },
+   {
+    "q": "C02_Q1"
+   },
+   {
+    "field": "phone_power",
+    "eq": "RESTORED"
+   },
+   {
+    "field": "link_ok",
+    "eq": true
+   }
+  ]
+ },
+ "hints": {
+  "texts": [
+   {
+    "id": "C02_H1",
+    "text": "Огледай телефона и кабела под него."
+   },
+   {
+    "id": "C02_H2",
+    "text": "Провери номерата, интервала в справката и статуса на посочения запис. 0% сега не доказва 0% тогава."
+   },
+   {
+    "id": "C02_H3",
+    "text": "Свържи зарядното; разгледай телефона, операторската справка и часовника за носене."
+   }
+  ],
+  "targets": [
+   {
+    "object_id": "C02_CHARGER",
+    "satisfied": {
+     "field": "charger",
+     "eq": "CONNECTED"
+    }
+   },
+   {
+    "object_id": "C02_PHONE",
+    "satisfied": {
+     "has_all": [
+      "EV_C02_IDENTITY"
+     ]
+    }
+   },
+   {
+    "object_id": "C02_RECORD",
+    "satisfied": {
+     "has_all": [
+      "EV_C02_NETWORK"
+     ]
+    }
+   },
+   {
+    "object_id": "C02_WATCH",
+    "satisfied": {
+     "has_all": [
+      "EV_C02_WATCH_LOG"
+     ]
+    }
+   }
+  ]
+ },
+ "solved_text": "Телефонът свърза номер B с Иво. Пълната справка изключи заявеното обаждане в 23:30. Посоченият запис е неуспешен опит в 22:48. Твърдението е опровергано; намерението на Мира не е установено."
+}
