@@ -9,14 +9,14 @@ var tree: SceneTree
 var holder: SubViewportContainer
 var vp: SubViewport
 var app: App
-var backend: MemorySaveBackend
+var backend: SaveBackend
 var dp_size := Vector2(360, 640)
 var font_scale := 1.0
 var insets_dp := [0, 0, 0, 0]
 var analytics_dir := ""
 static var _seq := 0
 
-func _init(device_dp := Vector2(360, 640), fs := 1.0, insets := [0, 0, 0, 0], shared: MemorySaveBackend = null) -> void:
+func _init(device_dp := Vector2(360, 640), fs := 1.0, insets := [0, 0, 0, 0], shared: SaveBackend = null) -> void:
 	tree = Engine.get_main_loop() as SceneTree
 	dp_size = device_dp
 	font_scale = fs
