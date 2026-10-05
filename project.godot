@@ -5,6 +5,8 @@ config_version=5
 
 [application]
 
+config/icon="res://assets/icon/app_icon_placeholder.png"
+
 config/name="CASE ZERO"
 config/version="0.1.0"
 run/main_scene="res://scenes/SCN_BOOT.tscn"

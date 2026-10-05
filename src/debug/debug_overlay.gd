@@ -1,6 +1,6 @@
 class_name DebugOverlay
 extends Control
-## Dev/playtest-only overlay (never instantiated in release: App checks PlatformService flags).
+## Dev-only overlay (never instantiated in playtest or release builds: App checks PlatformService.is_dev).
 ## Shows route, run state, recent sounds/haptics and save health; dev builds additionally get
 ## QA toggles (hitbox outlines, simulated write failure, font scale / insets override).
 ## It reads state and calls the same public intents as the UI; it never writes GameState itself.

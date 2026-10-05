@@ -54,7 +54,8 @@ static func boot(db: ContentDB, repo: SaveRepository) -> Dictionary:
 		state["interaction_index"] = 0
 	if not state.has("committed_action_ids"):
 		state["committed_action_ids"] = []
-	var content_changed := str(state.get("content_version", "")) != db.content_version
+	var version_changed := str(state.get("content_version", "")) != db.content_version
+	var content_changed := version_changed
 	# Content extension rule: a case added after the save was written (e.g. C04) starts as
 	# not completed / not rewarded. Existing progress is never altered by this step.
 	if state.get("campaign") is Dictionary and state["campaign"].get("completed") is Dictionary \
@@ -64,7 +65,8 @@ static func boot(db: ContentDB, repo: SaveRepository) -> Dictionary:
 				state["campaign"]["completed"][c] = false
 				state["campaign"]["reward_granted"][c] = false
 				content_changed = true
-	if content_changed:
+				Log.i(Log.BOOT, "content extension: new case added to campaign", {"case": c})
+	if version_changed:
 		# Explicit content-version policy: runs are re-validated against the current content;
 		# anything that no longer matches is offered for reset below, never silently rewritten.
 		Log.w(Log.BOOT, "content_version differs", {"save": state.get("content_version"), "content": db.content_version})

@@ -49,7 +49,8 @@ func start() -> void:
 		return
 	shell.sync()
 	_boot(t0)
-	if ctx.platform.is_dev or ctx.platform.is_playtest:
+	# Debug overlay: dev builds only (never playtest or release).
+	if ctx.platform.is_dev:
 		debug_overlay = DebugOverlay.new().setup(ctx, self)
 		shell.debug_layer.add_child(debug_overlay)
 
