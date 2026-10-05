@@ -1,0 +1,493 @@
+{
+ "case_id": "C03",
+ "order": 3,
+ "title": "Грешният влак",
+ "title_en": "The Wrong Train",
+ "objective": "Подреди събитията и провери влака.",
+ "opening_text": "Никола: „На ден D през цялата минута 20:15 бях във влак R214 за Изток. Потеглих от перон 2.“ Провери алибито.",
+ "scene_id": "SCN_C03_STATION",
+ "thumbnail_asset": "A_CASE_C03_THUMB",
+ "ambience": "AMB_C03",
+ "unlock": {
+  "campaign_completed": "C02"
+ },
+ "next_case": null,
+ "on_complete": "G_END",
+ "background": {
+  "object_id": "C03_BACKGROUND",
+  "asset_id": "A_C03_BG",
+  "rect": [
+   0,
+   264,
+   1080,
+   1332
+  ],
+  "z": 0
+ },
+ "run_fields": {
+  "timeline": {
+   "type": "token_slots",
+   "size": 3
+  },
+  "timeline_ok": {
+   "type": "bool",
+   "initial": false
+  },
+  "link_ok": {
+   "type": "bool",
+   "initial": false
+  }
+ },
+ "invariants": [],
+ "objects": [
+  {
+   "id": "C03_TICKET",
+   "name": "Билет R214",
+   "asset_id": "A_C03_TICKET",
+   "detail_asset_id": "A_C03_TICKET_DETAIL",
+   "rect": [
+    168,
+    1224,
+    288,
+    192
+   ],
+   "hitbox": [
+    144,
+    1200,
+    336,
+    240
+   ],
+   "layer": "Scene_Interactive",
+   "z": 10,
+   "priority": 100,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C03_INSPECT_TICKET",
+   "detail_text": "Ден D. Никола. R214, Централна → Изток. Отпътуване 20:10. Перон 2. Билетът не удостоверява качване.",
+   "evidence": [
+    "EV_C03_TICKET"
+   ],
+   "required": true
+  },
+  {
+   "id": "C03_CLOCK",
+   "name": "Проверка на часовника",
+   "asset_id": "A_C03_CLOCK",
+   "detail_asset_id": "A_C03_CLOCK_DETAIL",
+   "rect": [
+    168,
+    360,
+    192,
+    168
+   ],
+   "hitbox": [
+    144,
+    336,
+    240,
+    216
+   ],
+   "layer": "Scene_Interactive",
+   "z": 11,
+   "priority": 101,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C03_INSPECT_CLOCK",
+   "detail_text": "Час на кадъра: ден D, 20:15:30 местно време. Камерата и гарата са синхронизирани; потвърдена максимална грешка ±1 s. Това е проверка на запис, не движещ се часовник.",
+   "evidence": [
+    "EV_C03_CLOCK_SYNC"
+   ],
+   "required": true
+  },
+  {
+   "id": "C03_TIMETABLE",
+   "name": "Разписание и реално движение",
+   "asset_id": "A_C03_TIMETABLE",
+   "detail_asset_id": "A_C03_TIMETABLE_DETAIL",
+   "rect": [
+    624,
+    432,
+    336,
+    360
+   ],
+   "hitbox": [
+    600,
+    408,
+    384,
+    408
+   ],
+   "layer": "Scene_Interactive",
+   "z": 12,
+   "priority": 102,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C03_INSPECT_TIMETABLE",
+   "detail_text": "Ден D: R214, перон 2, по план 20:10, реално заминал 20:10:00, пристига Изток 20:35. R218, перон 4, по план и реално 20:20:00, пристига Запад 20:50. R214 няма междинно спиране.",
+   "evidence": [
+    "EV_C03_DEPARTURE"
+   ],
+   "required": true
+  },
+  {
+   "id": "C03_PHOTO",
+   "name": "Проверен кадър",
+   "asset_id": "A_C03_PHOTO",
+   "detail_asset_id": "A_C03_PHOTO_DETAIL",
+   "rect": [
+    144,
+    720,
+    336,
+    312
+   ],
+   "hitbox": [
+    120,
+    696,
+    384,
+    360
+   ],
+   "layer": "Scene_Interactive",
+   "z": 13,
+   "priority": 103,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C03_INSPECT_PHOTO",
+   "detail_text": "Оригинален проверен кадър, ден D, 20:15:30. Никола е разпознат и ясно видим извън влак, върху перона. В кадъра има табела 4 и табло R218.",
+   "evidence": [
+    "EV_C03_PHOTO"
+   ],
+   "required": true
+  },
+  {
+   "id": "C03_PLATFORM",
+   "name": "Информация за перон 4",
+   "asset_id": "A_C03_PLATFORM",
+   "detail_asset_id": "A_C03_PLATFORM_DETAIL",
+   "rect": [
+    624,
+    1080,
+    336,
+    288
+   ],
+   "hitbox": [
+    600,
+    1056,
+    384,
+    336
+   ],
+   "layer": "Scene_Interactive",
+   "z": 14,
+   "priority": 104,
+   "clickable": true,
+   "input": "TAP",
+   "profile": "P_INSPECT",
+   "physical_state": "STATIC",
+   "gate": true,
+   "inspect_screen": "C03_INSPECT_PLATFORM",
+   "detail_text": "Перон 4 обслужва R218 за Запад в 20:20; различен е от R214 за Изток от перон 2. Таблото е архивирано за същия ден и същия момент като снимката.",
+   "evidence": [
+    "EV_C03_PLATFORM"
+   ],
+   "required": true
+  }
+ ],
+ "evidence": [
+  {
+   "id": "EV_C03_TICKET",
+   "name": "Билет за R214",
+   "source_object": "C03_TICKET",
+   "icon": "I_EV_C03_TICKET",
+   "required": true,
+   "card_text": "Ден D, R214 за Изток, перон 2, 20:10. Не доказва качване."
+  },
+  {
+   "id": "EV_C03_CLOCK_SYNC",
+   "name": "Проверено време",
+   "source_object": "C03_CLOCK",
+   "icon": "I_EV_C03_CLOCK_SYNC",
+   "required": true,
+   "card_text": "Кадърът е от ден D, 20:15:30 ±1 s, местно време."
+  },
+  {
+   "id": "EV_C03_DEPARTURE",
+   "name": "Реално заминаване",
+   "source_object": "C03_TIMETABLE",
+   "icon": "I_EV_C03_DEPARTURE",
+   "required": true,
+   "card_text": "R214 действително тръгва от перон 2 в 20:10:00; R218 от перон 4 в 20:20."
+  },
+  {
+   "id": "EV_C03_PHOTO",
+   "name": "Никола на перона",
+   "source_object": "C03_PHOTO",
+   "icon": "I_EV_C03_PHOTO",
+   "required": true,
+   "card_text": "В 20:15:30 Никола е извън влак; видими са перон 4 и табло R218."
+  },
+  {
+   "id": "EV_C03_PLATFORM",
+   "name": "Другият влак",
+   "source_object": "C03_PLATFORM",
+   "icon": "I_EV_C03_PLATFORM",
+   "required": true,
+   "card_text": "Перон 4 = R218 за Запад; билетът е за R214 от перон 2 за Изток."
+  }
+ ],
+ "stages": [
+  {
+   "id": "C03_TIMELINE",
+   "screen": "C03_TIMELINE",
+   "type": "timeline",
+   "question": "Подреди от най-ранно към най-късно.",
+   "unlock": {
+    "has_all": [
+     "EV_C03_TICKET",
+     "EV_C03_CLOCK_SYNC",
+     "EV_C03_DEPARTURE",
+     "EV_C03_PHOTO",
+     "EV_C03_PLATFORM"
+    ]
+   },
+   "required_evidence": [
+    "EV_C03_TICKET",
+    "EV_C03_CLOCK_SYNC",
+    "EV_C03_DEPARTURE",
+    "EV_C03_PHOTO",
+    "EV_C03_PLATFORM"
+   ],
+   "slots_field": "timeline",
+   "tokens": [
+    {
+     "id": "TL_DEPART",
+     "label": "R214 заминава • D 20:10:00",
+     "sources": [
+      "EV_C03_DEPARTURE"
+     ]
+    },
+    {
+     "id": "TL_CLAIM",
+     "label": "Начало на заявения интервал • D 20:15:00",
+     "sources": []
+    },
+    {
+     "id": "TL_PHOTO",
+     "label": "Никола на перона • D 20:15:30 ±1 s",
+     "sources": [
+      "EV_C03_PHOTO",
+      "EV_C03_CLOCK_SYNC"
+     ]
+    }
+   ],
+   "display_order": [
+    "TL_PHOTO",
+    "TL_DEPART",
+    "TL_CLAIM"
+   ],
+   "correct_order": [
+    "TL_DEPART",
+    "TL_CLAIM",
+    "TL_PHOTO"
+   ],
+   "slot_labels": [
+    "1 Най-рано",
+    "2",
+    "3 Най-късно"
+   ],
+   "incorrect_feedback": "Подреди по показаните часове. Началото на алибито е твърдение, не доказан факт.",
+   "result": {
+    "field": "timeline_ok"
+   },
+   "final": false
+  },
+  {
+   "id": "C03_LINK",
+   "screen": "C03_LINK",
+   "type": "evidence_set",
+   "question": "Кои три източника проверяват часа и мястото на Никола в кадъра?",
+   "unlock": {
+    "all": [
+     {
+      "field": "timeline_ok",
+      "eq": true
+     },
+     {
+      "has_all": [
+       "EV_C03_TICKET",
+       "EV_C03_CLOCK_SYNC",
+       "EV_C03_DEPARTURE",
+       "EV_C03_PHOTO",
+       "EV_C03_PLATFORM"
+      ]
+     }
+    ]
+   },
+   "required_evidence": [
+    "EV_C03_TICKET",
+    "EV_C03_CLOCK_SYNC",
+    "EV_C03_DEPARTURE",
+    "EV_C03_PHOTO",
+    "EV_C03_PLATFORM"
+   ],
+   "select_count": 3,
+   "correct_set": [
+    "EV_C03_CLOCK_SYNC",
+    "EV_C03_PHOTO",
+    "EV_C03_PLATFORM"
+   ],
+   "submit_label": "Свържи",
+   "incorrect_feedback": "Билетът показва право на пътуване. Търсим провереното време и мястото в кадъра.",
+   "result": {
+    "field": "link_ok"
+   },
+   "final": false
+  },
+  {
+   "id": "C03_Q1",
+   "screen": "C03_DEDUCTION_Q1",
+   "type": "single_answer",
+   "question": "Кое заключение е доказано?",
+   "unlock": {
+    "all": [
+     {
+      "has_all": [
+       "EV_C03_TICKET",
+       "EV_C03_CLOCK_SYNC",
+       "EV_C03_DEPARTURE",
+       "EV_C03_PHOTO",
+       "EV_C03_PLATFORM"
+      ]
+     },
+     {
+      "field": "timeline_ok",
+      "eq": true
+     },
+     {
+      "field": "link_ok",
+      "eq": true
+     }
+    ]
+   },
+   "required_evidence": [
+    "EV_C03_TICKET",
+    "EV_C03_CLOCK_SYNC",
+    "EV_C03_DEPARTURE",
+    "EV_C03_PHOTO",
+    "EV_C03_PLATFORM"
+   ],
+   "answers": [
+    {
+     "id": "C03_Q1_A0",
+     "text": "Никола не е бил в R214 през цялата минута 20:15; вижда се на перон 4."
+    },
+    {
+     "id": "C03_Q1_A1",
+     "text": "Валидният билет доказва, че Никола е бил в R214."
+    },
+    {
+     "id": "C03_Q1_A2",
+     "text": "Кадърът доказва, че Никола е извършил престъплението."
+    }
+   ],
+   "correct": "C03_Q1_A0",
+   "correct_feedback": "Времето и мястото в кадъра противоречат на конкретното алиби. Билетът не е доказателство за присъствие.",
+   "incorrect_feedback": "Провери какво показва кадърът в заявената минута. Невярно алиби не е самостоятелно доказателство за престъпление.",
+   "result": {
+    "question": "C03_Q1"
+   },
+   "final": true
+  }
+ ],
+ "success": {
+  "all": [
+   {
+    "has_all": [
+     "EV_C03_TICKET",
+     "EV_C03_CLOCK_SYNC",
+     "EV_C03_DEPARTURE",
+     "EV_C03_PHOTO",
+     "EV_C03_PLATFORM"
+    ]
+   },
+   {
+    "q": "C03_Q1"
+   },
+   {
+    "field": "timeline_ok",
+    "eq": true
+   },
+   {
+    "field": "link_ok",
+    "eq": true
+   }
+  ]
+ },
+ "hints": {
+  "texts": [
+   {
+    "id": "C03_H1",
+    "text": "Сравни билета със снимката."
+   },
+   {
+    "id": "C03_H2",
+    "text": "Разграничи план от реално заминаване. След това провери часа и перона на кадъра."
+   },
+   {
+    "id": "C03_H3",
+    "text": "Разгледай всичките пет източника. Подреди 20:10, 20:15, 20:15:30; свържи снимката, проверката на часовника и таблото на перона."
+   }
+  ],
+  "targets": [
+   {
+    "object_id": "C03_TICKET",
+    "satisfied": {
+     "has_all": [
+      "EV_C03_TICKET"
+     ]
+    }
+   },
+   {
+    "object_id": "C03_PHOTO",
+    "satisfied": {
+     "has_all": [
+      "EV_C03_PHOTO"
+     ]
+    }
+   },
+   {
+    "object_id": "C03_TIMETABLE",
+    "satisfied": {
+     "has_all": [
+      "EV_C03_DEPARTURE"
+     ]
+    }
+   },
+   {
+    "object_id": "C03_CLOCK",
+    "satisfied": {
+     "has_all": [
+      "EV_C03_CLOCK_SYNC"
+     ]
+    }
+   },
+   {
+    "object_id": "C03_PLATFORM",
+    "satisfied": {
+     "has_all": [
+      "EV_C03_PLATFORM"
+     ]
+    }
+   }
+  ]
+ },
+ "solved_text": "R214 е заминал от перон 2 в 20:10. В проверения кадър от 20:15:30 Никола е на перон 4 до таблото за R218. Не е бил в R214 през цялата заявена минута. Следата „АРХИВ 0“ остава за следващи разследвания."
+}
