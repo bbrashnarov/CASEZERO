@@ -37,6 +37,8 @@ func start() -> void:
 	if _content_errors.is_empty():
 		_content_errors = Solvability.check(db)
 	_build_context(db)
+	# Dev builds log everything; playtest/release keep WARN and above.
+	Log.configure(ctx.platform.is_dev)
 	_apply_metrics()
 	shell = AppShell.new().setup(ctx)
 	add_child(shell)
@@ -198,6 +200,7 @@ func _on_route_changed(prev: Dictionary, cur: Dictionary) -> void:
 	_tick_active()
 	if prev == cur:
 		return
+	Log.d(Log.NAV, "route", {"from": str(prev.get("id", "")), "to": str(cur.get("id", ""))})
 	var cid := str(cur.get("case_id", ""))
 	match cur["kind"]:
 		Router.EVIDENCE:
