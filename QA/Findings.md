@@ -1,5 +1,7 @@
 # CASE ZERO — Findings (bug / defect register)
 
+> **АКТУАЛИЗАЦИЯ Run 2:** build и source са налични (branch `claude/project-thread-g4as3v`). CZ-QA-001 е затворен; CZ-QA-003/004 са понижени до S3; CZ-QA-007 е потвърден в имплементацията; нови: **CZ-QA-022 (S2 SOFTWARE BUG)**, CZ-QA-023, CZ-QA-024. Вижте `Report_Run2_Build_0.1.0.md`. Записите по-долу са от Run 1 (статичен анализ на спецификацията) и не са пренаписвани.
+
 Среда за всички записи: **няма APK/устройство** (виж CZ-QA-001). Commit на repository: `9a3509d`. Артефакт под тест: `CASE_ZERO_Vertical_Slice_BG.md` v1.0 (5.10.2026). Всички констатации са от **статичен анализ на документа** + скриптовете `QA/tools/spec_geometry_check.py` и `QA/tools/spec_state_model.py`. Няма runtime evidence; това е отбелязано при всяка констатация.
 
 Означения: `Observed` = какво е установено в документа/скрипта. `Possible cause` = хипотеза, не факт. Категории: SOFTWARE BUG / SPECIFICATION DEFECT / DESIGN CONCERN / TEST COVERAGE GAP. Не е намерен нито един SOFTWARE BUG – няма имплементация, която да се сравни със спецификацията.
