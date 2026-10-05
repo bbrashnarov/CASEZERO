@@ -100,5 +100,28 @@ func solve_c01() -> Dictionary:
 	inspect("C01", "C01_MANAGER")
 	return answer("C01", "C01_Q2", "C01_Q2_A1")
 
+func solve_c02() -> Dictionary:
+	if run("C02").is_empty() or not run("C02")["started"]:
+		start("C02")
+	inspect("C02", "C02_CHARGER")
+	connect_charger("C02", "C02_CHARGER")
+	inspect("C02", "C02_PHONE")
+	inspect("C02", "C02_RECORD")
+	inspect("C02", "C02_WATCH")
+	select_set("C02", "C02_CONNECT", ["EV_C02_IDENTITY", "EV_C02_NETWORK", "EV_C02_WATCH_LOG"])
+	return answer("C02", "C02_Q1", "C02_Q1_A2")
+
+func solve_c03() -> Dictionary:
+	if run("C03").is_empty() or not run("C03")["started"]:
+		start("C03")
+	for o in ["C03_TICKET", "C03_CLOCK", "C03_TIMETABLE", "C03_PHOTO", "C03_PLATFORM"]:
+		inspect("C03", o)
+	place("C03", "C03_TIMELINE", "TL_DEPART", 0)
+	place("C03", "C03_TIMELINE", "TL_CLAIM", 1)
+	place("C03", "C03_TIMELINE", "TL_PHOTO", 2)
+	submit_timeline("C03", "C03_TIMELINE")
+	select_set("C03", "C03_LINK", ["EV_C03_PHOTO", "EV_C03_CLOCK_SYNC", "EV_C03_PLATFORM"])
+	return answer("C03", "C03_Q1", "C03_Q1_A0")
+
 func names() -> Array:
 	return events.map(func(e): return e["name"])

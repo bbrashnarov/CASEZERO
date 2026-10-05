@@ -7,7 +7,9 @@
   "note": "No binary art pack delivered yet (spec Part 9). Missing textures render as labelled greybox rectangles."
  },
  "cases": [
-  "C01"
+  "C01",
+  "C02",
+  "C03"
  ],
  "case_files": {
   "C01": "res://content/cases/C01.json",

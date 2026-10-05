@@ -109,6 +109,12 @@ func preferred_height(width: float) -> float:
 		h += UiStyle.text_height(sub_label, inner) + _box.get_theme_constant("separation")
 	return maxf(maxf(m.touch_min(), custom_minimum_size.y), ceil(h))
 
+## True when the main label fits on one line at `width`.
+func fits_one_line(width: float) -> bool:
+	var font := label_node.get_theme_font("font")
+	var fs := label_node.get_theme_font_size("font_size")
+	return font.get_string_size(label_node.text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x <= width - ctx.metrics.dp(24)
+
 func _refresh() -> void:
 	if ctx == null:
 		return

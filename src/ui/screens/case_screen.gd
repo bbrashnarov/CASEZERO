@@ -12,7 +12,7 @@ var header: ScrollContainer
 var header_box: VBoxContainer
 var _title: Label
 var _objective: Label
-var footer: HBoxContainer
+var footer: GridContainer
 var hint_button: CzButton
 var evidence_button: CzButton
 var intro_card: PanelContainer
@@ -55,9 +55,11 @@ func setup(context: AppContext, r: Dictionary) -> CaseScreen:
 	header_box.add_child(_title)
 	header_box.add_child(_objective)
 	add_child(header)
-	footer = HBoxContainer.new()
+	footer = GridContainer.new()
 	footer.name = "Footer"
-	footer.add_theme_constant_override("separation", int(m.dp(24)))
+	footer.columns = 2
+	footer.add_theme_constant_override("h_separation", int(m.dp(24)))
+	footer.add_theme_constant_override("v_separation", int(m.dp(8)))
 	hint_button = CzButton.new().setup(ctx, "UI_HINT", "? " + ctx.t("hint_button"))
 	evidence_button = CzButton.new().setup(ctx, "UI_EVIDENCE", "")
 	for b in [hint_button, evidence_button]:
@@ -90,8 +92,16 @@ func layout() -> void:
 	header.position = Vector2(col.position.x + mg, m.safe.position.y + mg)
 	header.size = Vector2(w, hh)
 	var header_bottom := header.position.y + hh + mg * 0.5
-	var bw := (w - footer.get_theme_constant("separation")) * 0.5
-	var fh := maxf(hint_button.preferred_height(bw), evidence_button.preferred_height(bw))
+	# Side by side while both labels fit on one line; otherwise stacked full-width rows, so large
+	# fonts wrap whole words instead of breaking "Подсказка" mid-word.
+	var bw := (w - footer.get_theme_constant("h_separation")) * 0.5
+	var fh: float
+	if hint_button.fits_one_line(bw) and evidence_button.fits_one_line(bw):
+		footer.columns = 2
+		fh = maxf(hint_button.preferred_height(bw), evidence_button.preferred_height(bw))
+	else:
+		footer.columns = 1
+		fh = hint_button.preferred_height(w) + evidence_button.preferred_height(w) + footer.get_theme_constant("v_separation")
 	footer.size = Vector2(w, fh)
 	footer.position = Vector2(col.position.x + mg, m.safe.end.y - mg - fh)
 	var sr := m.scene_rect(header_bottom, footer.position.y - mg * 0.5)

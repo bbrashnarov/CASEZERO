@@ -249,6 +249,8 @@ func test_replay_keeps_campaign_and_grants_zero_xp() -> void:
 	assert_eq(h.base_id(), "C01_SOLVED")
 	await h.press("UI_PRIMARY", h.base())
 	await h.press("UI_PRIMARY", h.base())
+	assert_eq(h.base_id(), "C02_INTRO", "reward 'Следващ случай' opens C02")
+	await h.back()
 	assert_eq(h.base_id(), "G_BOARD")
 	await h.press("UI_BOARD_C01", h.base())
 	assert_eq(h.route(), "C01_CONFIRM_RESET", "solved card asks for replay confirmation")
