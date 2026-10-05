@@ -18,6 +18,8 @@ Engine: **Godot 4.7.2-stable**, typed GDScript (решение TD-001 в
 | `docs/TEST_REPORT.md` | Резултати: unit/persistence/integration/UI, AT01–AT20, kill тест, APK |
 | `docs/KNOWN_ISSUES.md` | Непроверено, ограничения на средата, интерпретации, допълнения |
 | `docs/FINAL_IMPLEMENTATION_REPORT.md` | Финален отчет (14 раздела) |
+| `docs/QA_TEST_PLAN.md` | Ръчен тест на устройство: инсталация, решения на случаите, QA01–QA32 |
+| `qa/apk/` | Готови за инсталиране dev и playtest APK + SHA256SUMS |
 
 ## Пускане на desktop
 

@@ -11,3 +11,5 @@ build/
 *.jks
 # Python
 __pycache__/
+# QA builds are committed on purpose so testers can install them without a build machine
+!qa/apk/*.apk
