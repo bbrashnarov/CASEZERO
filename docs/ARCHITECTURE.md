@@ -33,7 +33,7 @@ SaveRepository ── SaveCodec ── SaveBackend (File | Memory)
 | State | `src/state/game_state.gd` | Schema на GameState, initial run, `check()` (инварианти + content invariants) |
 | Gameplay | `src/gameplay/*` | `Reducer.reduce(state, action, db, ctx)` — чист; profiles (`P_INSPECT`, `P_PHONE`, `P_CHARGER`, `P_MANAGER`); `Deduction` (single_answer / evidence_set / timeline); `Hints`; `Selectors`; `Solvability` (BFS над достижими състояния) |
 | Store | `src/store/store.gd` | Idempotency (кеш на резултати + журнал `committed_action_ids`), инварианти, persist, pending при write failure, retry/revert |
-| Persistence | `src/persistence/*` | Envelope `{schema, checksum SHA-256, state}`; запис tmp → rename; ротация на `save.bak`; повреден файл се пази като `save.corrupt.*`; `Migrations` |
+| Persistence | `src/persistence/*` | Envelope `{schema, checksum (SHA-256), payload}`; запис tmp → rename; ротация на `save.bak`; повреден файл се пази като `save.corrupt.*`; `Migrations` |
 | Boot | `src/app/boot_service.gd` | FRESH → `C01_INTRO`; LOADED → `G_BOARD`; backup recovery; по-нов schema / повреда → Recovery диалог; нов случай в content → разширява кампанията |
 | Navigation | `src/navigation/router.gd` | Route = речник `{id, kind, case_id, ...}`; base screen + modal stack; ID-тата са screen ID от спецификацията |
 | UI | `src/ui/*` | `AppShell` рендерира Router state; screens/modals; `InvestigationView` (canonical 1080×1332 сцена, hit-test, G_PICKER); `LayoutMetrics` (dp/sp, safe area, scene/modal rect); `TapGesture` |

@@ -129,7 +129,8 @@ board за C01 и C02 charger/CONNECT, C03 scene/timeline (xvfb + OpenGL, llvmpi
 
 versionName 0.1.0, versionCode 1, minSdk 24, targetSdk 36 (от официалния template).
 `apksigner verify` минава; `tools/build/inspect_apk.py` проверява: само arm64-v8a, portrait,
-без INTERNET, без tests/tools файлове, content JSON вътре — PASS и за трите. Exported pack-ът е
+без INTERNET, без tests/tools файлове, content JSON вътре — PASS и за трите. SHA-256 на последния build:
+`dev 75c44481…f515`, `playtest ea923e70…4abc`, `release fc59e458…c758`. Exported pack-ът е
 boot-нат на desktop (`--main-pack`) → BOOT OK.
 
 **AAB: NOT BUILT** — изисква Gradle build и Android SDK platforms от `dl.google.com`, който е

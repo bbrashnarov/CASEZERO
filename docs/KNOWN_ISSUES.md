@@ -62,7 +62,7 @@
 
 ## 5. Липсващи production assets
 
-* **Art pack: GREYBOX.** Няма доставени binary assets (Part 12 Open items #3). Всички 68 Asset ID
+* **Art pack: GREYBOX.** Няма доставени binary assets (Part 12 §N, точка 3). Всички 68 Asset ID
   са в `content/manifest.json`; 57-те визуални са с `path: null` (11-те с път са шрифтове и audio); рендерерът рисува етикетирани правоъгълници
   (`Asset ID · GREYBOX`). `greybox_allowed` трябва да стане `false` за финален build — тогава
   липсващ критичен asset дава видима грешка вместо невидима улика.
