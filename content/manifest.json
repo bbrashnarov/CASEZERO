@@ -1,0 +1,798 @@
+{
+ "content_version": "case-zero-v1.0",
+ "spec_version": "1.0 (2026-10-05)",
+ "art_pack": {
+  "status": "GREYBOX",
+  "greybox_allowed": true,
+  "note": "No binary art pack delivered yet (spec Part 9). Missing textures render as labelled greybox rectangles."
+ },
+ "cases": [
+  "C01"
+ ],
+ "case_files": {
+  "C01": "res://content/cases/C01.json",
+  "C02": "res://content/cases/C02.json",
+  "C03": "res://content/cases/C03.json"
+ },
+ "sound_events": {
+  "SFX_UI_TAP": {
+   "asset": "AU_UI_TAP",
+   "haptic": "NONE",
+   "bus": "SFX"
+  },
+  "SFX_CLUE_FOUND": {
+   "asset": "AU_CLUE",
+   "haptic": "LIGHT",
+   "bus": "SFX"
+  },
+  "SFX_CONNECT": {
+   "asset": "AU_CONNECT",
+   "haptic": "NONE",
+   "bus": "SFX"
+  },
+  "SFX_DEDUCTION_CORRECT": {
+   "asset": "AU_DEDUCTION_OK",
+   "haptic": "NONE",
+   "bus": "SFX"
+  },
+  "SFX_WRONG_DEDUCTION": {
+   "asset": "AU_DEDUCTION_WRONG",
+   "haptic": "NONE",
+   "bus": "SFX"
+  },
+  "SFX_CASE_SOLVED": {
+   "asset": "AU_SOLVED",
+   "haptic": "MEDIUM",
+   "bus": "SFX"
+  },
+  "AMB_C01": {
+   "asset": "AU_RAIN_ROOM",
+   "haptic": "NONE",
+   "bus": "AMB",
+   "loop": true
+  },
+  "AMB_C02": {
+   "asset": "AU_ROOM",
+   "haptic": "NONE",
+   "bus": "AMB",
+   "loop": true
+  },
+  "AMB_C03": {
+   "asset": "AU_STATION",
+   "haptic": "NONE",
+   "bus": "AMB",
+   "loop": true
+  }
+ },
+ "assets": [
+  {
+   "id": "A_C01_BG",
+   "case": "C01",
+   "type": "texture_rgb",
+   "size": [
+    1080,
+    1332
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_WINDOW",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    336,
+    480
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_FLOOR",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    360,
+    216
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_SHOES",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    168,
+    168
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_CUP",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    168,
+    192
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_CLOCK",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    192,
+    168
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_MANAGER",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    264,
+    192
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_BODY",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    264,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_WINDOW_DETAIL",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_FLOOR_DETAIL",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_SHOES_DETAIL",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_CUP_DETAIL",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_CLOCK_DETAIL",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C01_MANAGER_DETAIL",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C01_RAIN",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C01_DRY_FLOOR",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C01_ADMISSION",
+   "case": "C01",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C02_BG",
+   "case": "C02",
+   "type": "texture_rgb",
+   "size": [
+    1080,
+    1332
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C02_PHONE",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    240,
+    384
+   ],
+   "critical": true,
+   "path": null,
+   "variants": {
+    "EMPTY": null,
+    "RESTORED": null
+   }
+  },
+  {
+   "id": "A_C02_CHARGER",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    240,
+    192
+   ],
+   "critical": true,
+   "path": null,
+   "variants": {
+    "DISCONNECTED": null,
+    "CONNECTED": null
+   }
+  },
+  {
+   "id": "A_C02_RECORD",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    336,
+    336
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C02_WATCH",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    216,
+    216
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C02_CLOCK",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    192,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C02_PHONE_DETAIL",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null,
+   "variants": {
+    "EMPTY": null,
+    "RESTORED": null
+   }
+  },
+  {
+   "id": "A_C02_CHARGER_DETAIL",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null,
+   "variants": {
+    "DISCONNECTED": null,
+    "CONNECTED": null
+   }
+  },
+  {
+   "id": "A_C02_RECORD_DETAIL",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C02_WATCH_DETAIL",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C02_CLOCK_DETAIL",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C02_BATTERY",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C02_IDENTITY",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C02_NETWORK",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C02_WATCH_LOG",
+   "case": "C02",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C03_BG",
+   "case": "C03",
+   "type": "texture_rgb",
+   "size": [
+    1080,
+    1332
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C03_TICKET",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    288,
+    192
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C03_CLOCK",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    192,
+    168
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C03_TIMETABLE",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    336,
+    360
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C03_PHOTO",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    336,
+    312
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C03_PLATFORM",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    336,
+    288
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C03_TICKET_DETAIL",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C03_CLOCK_DETAIL",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C03_TIMETABLE_DETAIL",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C03_PHOTO_DETAIL",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_C03_PLATFORM_DETAIL",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    888,
+    456
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C03_TICKET",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C03_CLOCK_SYNC",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C03_DEPARTURE",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C03_PHOTO",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "I_EV_C03_PLATFORM",
+   "case": "C03",
+   "type": "texture_rgba",
+   "size": [
+    144,
+    144
+   ],
+   "critical": true,
+   "path": null
+  },
+  {
+   "id": "A_UI_PANEL",
+   "case": "ALL",
+   "type": "texture_9slice",
+   "size": [
+    96,
+    96
+   ],
+   "critical": false,
+   "path": null
+  },
+  {
+   "id": "A_UI_BUTTON",
+   "case": "ALL",
+   "type": "texture_9slice",
+   "size": [
+    96,
+    96
+   ],
+   "critical": false,
+   "path": null
+  },
+  {
+   "id": "A_UI_ICONS",
+   "case": "ALL",
+   "type": "texture_atlas",
+   "size": [
+    576,
+    432
+   ],
+   "critical": false,
+   "path": null
+  },
+  {
+   "id": "A_BOARD_BG",
+   "case": "ALL",
+   "type": "texture_rgb",
+   "size": [
+    1080,
+    1776
+   ],
+   "critical": false,
+   "path": null
+  },
+  {
+   "id": "A_ARCHIVE_ZERO",
+   "case": "ALL",
+   "type": "texture_rgba",
+   "size": [
+    240,
+    144
+   ],
+   "critical": false,
+   "path": null
+  },
+  {
+   "id": "A_CASE_C01_THUMB",
+   "case": "ALL",
+   "type": "texture_rgb",
+   "size": [
+    360,
+    240
+   ],
+   "critical": false,
+   "path": null
+  },
+  {
+   "id": "A_CASE_C02_THUMB",
+   "case": "ALL",
+   "type": "texture_rgb",
+   "size": [
+    360,
+    240
+   ],
+   "critical": false,
+   "path": null
+  },
+  {
+   "id": "A_CASE_C03_THUMB",
+   "case": "ALL",
+   "type": "texture_rgb",
+   "size": [
+    360,
+    240
+   ],
+   "critical": false,
+   "path": null
+  },
+  {
+   "id": "A_LOGO",
+   "case": "ALL",
+   "type": "texture_rgba",
+   "size": [
+    720,
+    240
+   ],
+   "critical": false,
+   "path": null
+  },
+  {
+   "id": "F_UI_REGULAR",
+   "case": "ALL",
+   "type": "font",
+   "critical": false,
+   "path": null
+  },
+  {
+   "id": "F_UI_SEMIBOLD",
+   "case": "ALL",
+   "type": "font",
+   "critical": false,
+   "path": null
+  },
+  {
+   "id": "AU_UI_TAP",
+   "case": "ALL",
+   "type": "audio",
+   "critical": false,
+   "path": "res://assets/audio/au_ui_tap.wav",
+   "placeholder": true
+  },
+  {
+   "id": "AU_CLUE",
+   "case": "ALL",
+   "type": "audio",
+   "critical": false,
+   "path": "res://assets/audio/au_clue.wav",
+   "placeholder": true
+  },
+  {
+   "id": "AU_CONNECT",
+   "case": "ALL",
+   "type": "audio",
+   "critical": false,
+   "path": "res://assets/audio/au_connect.wav",
+   "placeholder": true
+  },
+  {
+   "id": "AU_DEDUCTION_OK",
+   "case": "ALL",
+   "type": "audio",
+   "critical": false,
+   "path": "res://assets/audio/au_deduction_ok.wav",
+   "placeholder": true
+  },
+  {
+   "id": "AU_DEDUCTION_WRONG",
+   "case": "ALL",
+   "type": "audio",
+   "critical": false,
+   "path": "res://assets/audio/au_deduction_wrong.wav",
+   "placeholder": true
+  },
+  {
+   "id": "AU_SOLVED",
+   "case": "ALL",
+   "type": "audio",
+   "critical": false,
+   "path": "res://assets/audio/au_solved.wav",
+   "placeholder": true
+  },
+  {
+   "id": "AU_RAIN_ROOM",
+   "case": "ALL",
+   "type": "audio",
+   "critical": false,
+   "path": "res://assets/audio/au_rain_room.wav",
+   "placeholder": true
+  },
+  {
+   "id": "AU_ROOM",
+   "case": "ALL",
+   "type": "audio",
+   "critical": false,
+   "path": "res://assets/audio/au_room.wav",
+   "placeholder": true
+  },
+  {
+   "id": "AU_STATION",
+   "case": "ALL",
+   "type": "audio",
+   "critical": false,
+   "path": "res://assets/audio/au_station.wav",
+   "placeholder": true
+  }
+ ]
+}
