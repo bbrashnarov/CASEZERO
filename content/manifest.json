@@ -713,14 +713,15 @@
    "case": "ALL",
    "type": "font",
    "critical": false,
-   "path": null
+   "path": "res://assets/fonts/NotoSans-Regular.ttf"
   },
   {
    "id": "F_UI_SEMIBOLD",
    "case": "ALL",
    "type": "font",
    "critical": false,
-   "path": null
+   "path": "res://assets/fonts/NotoSans-Bold.ttf",
+   "note": "SemiBold weight not available offline; Bold used until the licensed SemiBold file is delivered."
   },
   {
    "id": "AU_UI_TAP",

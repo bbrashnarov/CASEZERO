@@ -19,6 +19,8 @@ const CORRUPT := "CORRUPT"
 
 var backend: SaveBackend
 var last_error := ""
+## Dev/QA only (debug overlay, tests): the next N primary writes fail with ERR_FILE_CANT_WRITE.
+var debug_fail_next := 0
 
 func _init(b: SaveBackend) -> void:
 	backend = b
@@ -33,7 +35,13 @@ func commit(state: Dictionary) -> Dictionary:
 			# The backup is a recovery aid; failing to refresh it must not block progress, the
 			# primary write below is still atomic.
 			Log.w(Log.SAVE, "backup rotation failed", {"err": berr})
-	var err := backend.write_atomic(PRIMARY, text)
+	var err: int
+	if debug_fail_next > 0:
+		# Simulated failure: nothing is written, the previous snapshot stays intact.
+		debug_fail_next -= 1
+		err = ERR_FILE_CANT_WRITE
+	else:
+		err = backend.write_atomic(PRIMARY, text)
 	if err != OK:
 		last_error = error_string(err)
 		Log.e(Log.SAVE, "snapshot write failed", {"err": err, "msg": last_error})

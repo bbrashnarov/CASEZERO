@@ -33,7 +33,7 @@ func _initialize() -> void:
 	for dir in DIRS:
 		for path in _scripts(dir):
 			var script: GDScript = load(path)
-			if script == null:
+			if script == null or not script.can_instantiate():
 				results.append({"suite": path, "test": "<load>", "ok": false, "failures": ["script failed to load"]})
 				failed += 1
 				continue
